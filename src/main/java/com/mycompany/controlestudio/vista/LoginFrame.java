@@ -230,9 +230,21 @@ public class LoginFrame extends javax.swing.JFrame {
                 (new Timer(1500, (ex) -> dialog.dispose())).start();
                 dialog.setVisible(true);
 
-                // Pasa persona a HomePage
-                HomePage home = new HomePage(p);
-                home.setVisible(true);
+                // **Apertura de la ventana correcta según el rol**
+            switch (p.getTipo_rol()) {
+                case Administrador:
+                    AdminHomePage adminHome = new AdminHomePage(p);
+                    adminHome.setVisible(true);
+                    break;
+                case Profesor:
+                    ProfesorHomePage profesorHome = new ProfesorHomePage(p);
+                    profesorHome.setVisible(true);
+                    break;
+                case Estudiante:
+                    EstudianteHomePage estudianteHome = new EstudianteHomePage(p);
+                    estudianteHome.setVisible(true);
+                    break;
+            }
                 this.dispose();
                 
             } else {
